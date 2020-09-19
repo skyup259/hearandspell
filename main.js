@@ -412,6 +412,7 @@ class GlobalService {
         this.openNameModel();
     }
     startLevel() {
+        localStorage.setItem('name', this.userName);
         this.inputRow = true;
         this.userInput = [];
         this.questionNumber = 0;
@@ -426,6 +427,7 @@ class GlobalService {
     nextLevel() {
         this.levelChanged(this.selectedlevel + 1);
         $('#exampleModal').modal('hide');
+        this.aloudQuestion();
     }
     changedLang(idx) {
         this.selectedLangIndex = idx;
@@ -591,6 +593,9 @@ class PlayComponent {
     }
     ngOnInit() {
         this.globalService.levelChanged(0);
+        if (localStorage.getItem('name')) {
+            this.globalService.userName = localStorage.getItem('name');
+        }
     }
 }
 PlayComponent.ɵfac = function PlayComponent_Factory(t) { return new (t || PlayComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_global_service__WEBPACK_IMPORTED_MODULE_1__["GlobalService"])); };
